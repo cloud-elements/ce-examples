@@ -1,0 +1,37 @@
+{
+  "fields": [
+    {
+      "type": "string",
+      "path": "firstName"
+    },
+    {
+      "type": "string",
+      "path": "lastName"
+    },
+    {
+      "type": "string",
+      "path": "My_addressInfo.My_state"
+    },
+    {
+      "type": "string",
+      "path": "My_addressInfo.My_zip"
+    },
+    {
+      "type": "string",
+      "path": "My_addressInfo.My_street"
+    },
+    {
+      "type": "string",
+      "path": "id"
+    },
+    {
+      "type": "string",
+      "path": "My_addressInfo.My_city"
+    },
+    {
+      "type": "string",
+      "path": "email"
+    }
+  ],
+  "level": "organization"
+}

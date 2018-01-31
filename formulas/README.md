@@ -1,9 +1,9 @@
-# ce-examples
-A collection of simple examples on how to use Cloud Elements.
+# Formula examples
+A collection of simple examples on how to use Cloud Elements Formulas.
 
-The examples are organized by type:
-* [Formulas](formulas)
-* [Elements](elements)
+The following examples are provided:
+* [Using bulk uploads and downloads within a formula](how-to-use-bulk-within-a-formula)
+* [Monitoring the health of an element](monitor-the-health-of-an-element)
 
 For more information on how to use Cloud Elements, see our [developer portal](https://developers.cloud-elements.com) 
 or our [support page](https://support.cloud-elements.com/hc/en-us).

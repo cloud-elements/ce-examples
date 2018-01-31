@@ -1,0 +1,71 @@
+{
+  "level": "organization",
+  "objectName": "MyContact",
+  "vendorName": "Contact",
+  "startDate": "2017-07-07 19:00:10.759064",
+  "fields": [
+    {
+      "path": "email",
+      "vendorPath": "Email",
+      "level": "organization"
+    },
+    {
+      "path": "id",
+      "vendorPath": "Id",
+      "level": "organization"
+    },
+    {
+      "path": "firstName",
+      "vendorPath": "FirstName",
+      "level": "organization"
+    },
+    {
+      "path": "lastName",
+      "vendorPath": "LastName",
+      "level": "organization"
+    },
+    {
+      "path": "addressInfo.MailingCity",
+      "vendorPath": "MailingCity",
+      "level": "organization"
+    },
+    {
+      "path": "addressInfo.MailingPostalCode",
+      "vendorPath": "MailingPostalCode",
+      "level": "organization"
+    },
+    {
+      "path": "addressInfo.MailingStreet",
+      "vendorPath": "MailingStreet",
+      "level": "organization"
+    },
+    {
+      "path": "addressInfo.MailingCountry",
+      "vendorPath": "MailingCountry",
+      "level": "organization"
+    },
+    {
+      "path": "addressInfo.MailingState",
+      "vendorPath": "MailingState",
+      "level": "organization"
+    },
+    {
+      "path": "Acquisition_Outbound_User__c",
+      "vendorPath": "Acquisition_Outbound_User__c",
+      "level": "organization"
+    }
+  ],
+  "configuration": [
+    {
+      "type": "passThrough",
+      "properties": {
+        "fromVendor": false,
+        "toVendor": false
+      }
+    },
+    {
+      "type": "addToDocumentation"
+    }
+  ],
+  "isLegacy": false
+}
