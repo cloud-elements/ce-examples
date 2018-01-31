@@ -1,0 +1,77 @@
+{
+  "level": "organization",
+  "objectName": "MyContact",
+  "vendorName": "contact",
+  "startDate": "2015-11-19 21:38:34.360456",
+  "fields": [
+    {
+      "path": "My_id",
+      "vendorPath": "attributes.contactid",
+      "level": "organization",
+      "configuration": [
+        {
+          "type": "passThrough",
+          "properties": {
+            "fromVendor": true,
+            "toVendor": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "My_firstName",
+      "vendorPath": "attributes.firstname",
+      "level": "organization"
+    },
+    {
+      "path": "My_lastName",
+      "vendorPath": "attributes.lastname",
+      "level": "organization"
+    },
+    {
+      "path": "My_email",
+      "vendorPath": "attributes.emailaddress1",
+      "level": "organization"
+    },
+    {
+      "path": "My_phone",
+      "vendorPath": "attributes.mobilephone",
+      "level": "organization"
+    },
+    {
+      "path": "My_addressInfo.My_city",
+      "vendorPath": "attributes.address1_city",
+      "level": "organization"
+    },
+    {
+      "path": "My_addressInfo.My_state",
+      "vendorPath": "attributes.address1_stateorprovince",
+      "level": "organization"
+    },
+    {
+      "path": "My_addressInfo.My_zip",
+      "vendorPath": "attributes.address1_postalcode",
+      "level": "organization"
+    },
+    {
+      "path": "My_addressInfo.My_country",
+      "vendorPath": "attributes.address1_country",
+      "level": "organization"
+    },
+    {
+      "path": "My_addressInfo.My_street",
+      "vendorPath": "attributes.address1_line1",
+      "level": "organization"
+    }
+  ],
+  "configuration": [
+    {
+      "type": "passThrough",
+      "properties": {
+        "fromVendor": false,
+        "toVendor": false
+      }
+    }
+  ],
+  "isLegacy": true
+}

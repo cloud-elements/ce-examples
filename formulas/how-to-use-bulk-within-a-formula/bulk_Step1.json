@@ -1,0 +1,74 @@
+{
+  "id": 5208,
+  "name": "Bulk Step 1",
+  "description": "Start a bulk download from an element",
+  "userId": 8011,
+  "accountId": 8125,
+  "createdDate": "2018-01-25T04:51:12Z",
+  "steps": [{
+    "id": 53563,
+    "onSuccess": ["createBulkJob"],
+    "onFailure": [],
+    "name": "createQuery",
+    "type": "script",
+    "properties": {
+      "body": "done({\n  \"body\":{\n    \"query\":\"select * from \" + config.object,\n    \"headerData\": {\n      \"order\": \"asc\"\n    }\n  },\n  \"headers\":{\n    \"Elements-Async-Callback-Url\":\"/formulas/instances/\" + config.secondformulainstanceid + \"/executions\",\n  },\n});"
+    }
+  }, {
+    "id": 53564,
+    "onSuccess": [],
+    "onFailure": [],
+    "name": "createBulkJob",
+    "type": "elementRequest",
+    "properties": {
+      "body": "${steps.createQuery.body}",
+      "method": "POST",
+      "elementInstanceId": "${config.crm.source}",
+      "api": "/bulk/query",
+      "query": "",
+      "headers": "${steps.createQuery.headers}"
+    }
+  }],
+  "triggers": [{
+    "id": 4697,
+    "onSuccess": ["createQuery"],
+    "onFailure": [],
+    "type": "scheduled",
+    "async": true,
+    "name": "trigger",
+    "properties": {
+      "cron": "${config.cron}"
+    }
+  }],
+  "active": true,
+  "singleThreaded": false,
+  "debugLoggingEnabled": true,
+  "configuration": [{
+    "id": 15740,
+    "key": "crm.source",
+    "name": "CRM Source",
+    "type": "elementInstance",
+    "description": "Source CRM instance to take updates from and push into Act-On",
+    "required": true
+  }, {
+    "id": 15741,
+    "key": "cron",
+    "name": "cron",
+    "type": "value",
+    "required": true
+  }, {
+    "id": 15742,
+    "key": "object",
+    "name": "object",
+    "type": "value",
+    "description": "Which object to pull from the CRM (contacts, accounts, CustomContact, etc.)",
+    "required": true
+  }, {
+    "id": 15743,
+    "key": "secondformulainstanceid",
+    "name": "SecondFormulaInstanceId",
+    "type": "value",
+    "description": "The ID of the second formula instance",
+    "required": true
+  }]
+}

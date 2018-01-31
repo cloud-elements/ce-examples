@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bulk Step 1</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+        var callback = function(){}
+    </script>
+    <style>
+        div.mermaidTooltip {
+                    margin-left: 50px;
+                    text-align: left;
+                    max-width: none;
+                }
+        .node rect,
+        .node circle,
+        .node ellipse,
+        .node polygon {
+                    fill: #cde498;
+                    stroke: #333;
+                    stroke-width: 2px;
+                }
+        .mermaid .label {
+                  max-width: 50px;
+                }
+        table, th, td {
+                    border: 1px solid black;
+                }
+        table {
+                    border-spacing: 5px;
+                    border-radius: 5px;
+                    margin: auto;
+                }
+        th, td {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    border-radius: 5px;
+                }
+        th {
+                    color: blue;
+                }
+        td {
+                    width: 180px;
+                    text-align: center;
+                }
+        h2 {
+                    text-align: center;
+                    color: red;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 1em;
+                }
+        .container {
+                    text-align: center;
+                }
+    </style>
+</head>
+<body>
+    <h2>
+        Bulk Step 1
+    </h2>
+    <div class="container">
+        <div class="mermaid">
+            graph TD
+            step-000((Trigger))
+            step-001(createQuery)
+            step-002>createBulkJob]
+            step-003((END))
+            step-000== continue ==>step-001
+            step-001-- success -->step-002
+            step-002-. done .->step-003
+            style step-002 fill:#10a54a;
+            style step-003 stroke-width:3px,stroke-dasharray: 5, 5;
+            click step-000 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPnRyaWdnZXI8L3RpdGxlPjwvaGVhZD48Ym9keT5UcmlnZ2VyIEVsZW1lbnQ6PGJyPjxicj48cHJlPiAgYXN5bmMgOiBUcnVlPGJyPiAgIGNyb24gOiAke2NvbmZpZy5jcm9ufTxicj4gICB0eXBlIDogc2NoZWR1bGVkPC9wcmU+PGJyPlJBVyBKU09OOjxicj48YnI+PHByZT57PGJyPiAgJ25hbWUnOiAndHJpZ2dlcicsIDxicj4gICdvbkZhaWx1cmUnOiBbXSwgPGJyPiAgJ29uU3VjY2Vzcyc6IFs8YnI+ICAgICdjcmVhdGVRdWVyeSc8YnI+ICBdLCA8YnI+ICAncHJvcGVydGllcyc6IHs8YnI+ICAgICdjcm9uJzogJyR7Y29uZmlnLmNyb259Jzxicj4gIH0sIDxicj4gICdhc3luYyc6IHRydWUsIDxicj4gICd0eXBlJzogJ3NjaGVkdWxlZCcsIDxicj4gICdpZCc6IDQ2OTc8YnI+fTwvcHJlPjwvYm9keT48L2h0bWw+" "Trigger Element:<br><pre>  async : True<br>   cron : ${config.cron}<br>   type : scheduled</pre>"
+            click step-001 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmNyZWF0ZVF1ZXJ5PC90aXRsZT48L2hlYWQ+PGJvZHk+SmF2YVNjcmlwdDo8YnI+PGJyPjxwcmU+ZG9uZSh7PGJyPiAgJ2JvZHknOns8YnI+ICAgICdxdWVyeSc6J3NlbGVjdCAqIGZyb20gJyArIGNvbmZpZy5vYmplY3QsPGJyPiAgICAnaGVhZGVyRGF0YSc6IHs8YnI+ICAgICAgJ29yZGVyJzogJ2FzYyc8YnI+ICAgIH08YnI+ICB9LDxicj4gICdoZWFkZXJzJzp7PGJyPiAgICAnRWxlbWVudHMtQXN5bmMtQ2FsbGJhY2stVXJsJzonL2Zvcm11bGFzL2luc3RhbmNlcy8nICsgY29uZmlnLnNlY29uZGZvcm11bGFpbnN0YW5jZWlkICsgJy9leGVjdXRpb25zJyw8YnI+ICB9LDxicj59KTs8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICdjcmVhdGVRdWVyeScsIDxicj4gICdvbkZhaWx1cmUnOiBbXSwgPGJyPiAgJ29uU3VjY2Vzcyc6IFs8YnI+ICAgICdjcmVhdGVCdWxrSm9iJzxicj4gIF0sIDxicj4gICdpZCc6IDUzNTYzLCA8YnI+ICAndHlwZSc6ICdzY3JpcHQnLCA8YnI+ICAncHJvcGVydGllcyc6IHs8YnI+ICAgICdib2R5JzogJ2RvbmUoe1xuICBcJ2JvZHlcJzp7XG4gICAgXCdxdWVyeVwnOlwnc2VsZWN0ICogZnJvbSBcJyArIGNvbmZpZy5vYmplY3QsXG4gICAgXCdoZWFkZXJEYXRhXCc6IHtcbiAgICAgIFwnb3JkZXJcJzogXCdhc2NcJ1xuICAgIH1cbiAgfSxcbiAgXCdoZWFkZXJzXCc6e1xuICAgIFwnRWxlbWVudHMtQXN5bmMtQ2FsbGJhY2stVXJsXCc6XCcvZm9ybXVsYXMvaW5zdGFuY2VzL1wnICsgY29uZmlnLnNlY29uZGZvcm11bGFpbnN0YW5jZWlkICsgXCcvZXhlY3V0aW9uc1wnLFxuICB9LFxufSk7Jzxicj4gIH08YnI+fTwvcHJlPjwvYm9keT48L2h0bWw+" "JavaScript:<br><pre>done({<br>  'body':{<br>    'query':'select * from ' + config.object,<br>    'headerData': {<br>      'order': 'asc'<br>    }<br>  },<br>  'headers':{<br>    'Elements-Async-Callback-Url':'/formulas/instances/' + config.secondformulainstanceid + '/executions',<br>  },<br>});</pre>"
+            click step-002 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmNyZWF0ZUJ1bGtKb2I8L3RpdGxlPjwvaGVhZD48Ym9keT5SZXF1ZXN0Ojxicj48YnI+PHByZT4gICAgICAgICAgICAgICAgYXBpIDogL2J1bGsvcXVlcnk8YnI+ICAgICAgICAgICAgICAgYm9keSA6ICR7c3RlcHMuY3JlYXRlUXVlcnkuYm9keX08YnI+ICBlbGVtZW50SW5zdGFuY2VJZCA6ICR7Y29uZmlnLmNybS5zb3VyY2V9PGJyPiAgICAgICAgICAgIGhlYWRlcnMgOiAke3N0ZXBzLmNyZWF0ZVF1ZXJ5LmhlYWRlcnN9PGJyPiAgICAgICAgICAgICBtZXRob2QgOiBQT1NUPGJyPiAgICAgICAgICAgICAgcXVlcnkgOiA8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICdjcmVhdGVCdWxrSm9iJywgPGJyPiAgJ29uRmFpbHVyZSc6IFtdLCA8YnI+ICAnb25TdWNjZXNzJzogW10sIDxicj4gICdpZCc6IDUzNTY0LCA8YnI+ICAndHlwZSc6ICdlbGVtZW50UmVxdWVzdCcsIDxicj4gICdwcm9wZXJ0aWVzJzogezxicj4gICAgJ2JvZHknOiAnJHtzdGVwcy5jcmVhdGVRdWVyeS5ib2R5fScsIDxicj4gICAgJ2hlYWRlcnMnOiAnJHtzdGVwcy5jcmVhdGVRdWVyeS5oZWFkZXJzfScsIDxicj4gICAgJ2FwaSc6ICcvYnVsay9xdWVyeScsIDxicj4gICAgJ3F1ZXJ5JzogJycsIDxicj4gICAgJ2VsZW1lbnRJbnN0YW5jZUlkJzogJyR7Y29uZmlnLmNybS5zb3VyY2V9JywgPGJyPiAgICAnbWV0aG9kJzogJ1BPU1QnPGJyPiAgfTxicj59PC9wcmU+PC9ib2R5PjwvaHRtbD4=" "Request:<br><pre>                api : /bulk/query<br>               body : ${steps.createQuery.body}<br>  elementInstanceId : ${config.crm.source}<br>            headers : ${steps.createQuery.headers}<br>             method : POST<br>              query : </pre>"
+
+        </div>
+    </div>
+    <h2>
+        Formula Configuration
+    </h2>
+    <div class="container">
+        <h3>Basic</h3><table><tr><th>key</th><th>value</th></tr><tr><td>Name</td><td>Bulk Step 1</td></tr><tr><td>Single Threaded?</td><td>False</td></tr><tr><td>Active?</td><td>True</td></tr><tr><td>Number of Steps</td><td>2</td></tr><tr><td>Number of Triggers</td><td>1</td></tr></table><br/><h3>Elements</h3><table><tr><th>key</th><th>name</th><th>required</th></tr><tr><td>crm.source</td><td>CRM Source</td><td>True</td></tr></table><br/><h3>Values</h3><table><tr><th>key</th><th>name</th><th>required</th></tr><tr><td>cron</td><td>cron</td><td>True</td></tr><tr><td>object</td><td>object</td><td>True</td></tr><tr><td>secondformulainstanceid</td><td>SecondFormulaInstanceId</td><td>True</td></tr></table><br/>
+    </div>
+    <div class="key">
+        <h2>
+            Key
+        </h2>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Symbol</th>
+            </tr>
+
+            <tr>
+                <td>Filter Steps</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        A{Step Name}
+                    </div>
+                </td>
+                <td>Trigger/End</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        B((Actual))
+                        C((Generated))
+                        style C stroke-width:2px,stroke-dasharray: 5, 5;
+                    </div>
+                </td>
+                <td>Request Step</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        A>GET]
+                        style A fill:#0f6ab4;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        B>POST]
+                        style B fill:#10a54a;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        C>PATCH]
+                        style C fill:#D38042;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        C>PUT]
+                        style C fill:#C5862B;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        D>DELETE]
+                        style D fill:#a41e22,fill-opacity:0.8;
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Script</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D(Step Name)
+                    </div>
+                </td>
+                <td>Loop</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D(-Step Name-)
+                    </div>
+                </td>
+                <td>Other(TYPE)</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D[Step Name]
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Pass/Fail Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL(B)
+                        AL-->BL
+                    </div>
+                </td>
+                <td>Generated Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL((B))
+                        AL-.->BL
+                        style BL stroke-width:2px,stroke-dasharray: 5, 5;
+                    </div>
+                </td>
+                <td>Continue Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL(B)
+                        AL==>BL
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br><br><br><br><br><br><br><br><br>
+    </div>
+</body>
+</html>

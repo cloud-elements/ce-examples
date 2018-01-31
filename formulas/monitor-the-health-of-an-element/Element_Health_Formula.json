@@ -1,0 +1,55 @@
+{
+  "id": 19554,
+  "name": "Health Check",
+  "userId": 173,
+  "accountId": 1710,
+  "createdDate": "2018-01-22T18:56:15Z",
+  "steps": [{
+    "id": 103298,
+    "onSuccess": [],
+    "onFailure": [],
+    "name": "sendEmail",
+    "type": "script",
+    "properties": {
+      "body": "notify.email(`${config.email}`,`instance failure`, `An API call to SAP B1 has failed with error: ${JSON.stringify(steps.test.response.body)}. On instance ID: ${config.instance}`);\n\ndone();"
+    }
+  }, {
+    "id": 103289,
+    "onSuccess": [],
+    "onFailure": ["sendEmail"],
+    "name": "test",
+    "type": "elementRequest",
+    "properties": {
+      "method": "GET",
+      "api": "/accounts",
+      "elementInstanceId": "${config.instance}"
+    }
+  }],
+  "triggers": [{
+    "id": 17734,
+    "onSuccess": ["test"],
+    "onFailure": [],
+    "type": "scheduled",
+    "async": true,
+    "name": "trigger",
+    "properties": {
+      "cron": "0 0/15 * 1/1 * ? *"
+    }
+  }],
+  "active": true,
+  "debugLoggingEnabled": true,
+  "singleThreaded": false,
+  "configuration": [{
+    "id": 32864,
+    "key": "email",
+    "name": "email",
+    "type": "value",
+    "required": true
+  }, {
+    "id": 32853,
+    "key": "instance",
+    "name": "instance",
+    "type": "elementInstance",
+    "required": true
+  }]
+}

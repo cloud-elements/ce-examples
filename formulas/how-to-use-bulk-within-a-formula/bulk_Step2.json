@@ -1,0 +1,78 @@
+{
+  "id": 5209,
+  "name": "Bulk Step 2",
+  "description": "Receives the data stream from Step 1 and sends to Act-On",
+  "userId": 8011,
+  "accountId": 8125,
+  "createdDate": "2018-01-25T04:54:39Z",
+  "steps": [{
+    "id": 53567,
+    "onSuccess": [],
+    "onFailure": [],
+    "name": "streamBulkResults",
+    "type": "elementRequestStream",
+    "properties": {
+      "downloadElementInstanceId": "${config.crm.source}",
+      "uploadApi": "/bulk/${config.object}",
+      "uploadElementInstanceId": "${config.target}",
+      "uploadMethod": "POST",
+      "uploadFormData": "",
+      "downloadApi": "/bulk/${trigger.args.id}/${config.object}",
+      "downloadMethod": "GET",
+      "uploadFormDataName": "",
+      "downloadHeaders": "${steps.generateMetadata.downloadHeaders}"
+    }
+  }, {
+    "id": 53566,
+    "onSuccess": ["generateMetadata"],
+    "onFailure": [],
+    "name": "isSuccess",
+    "type": "filter",
+    "properties": {
+      "body": "let status = trigger.args.status;\n\nif (status && status === \"COMPLETED\") {\n  done(true);\n} else {\n  done(false);\n}"
+    }
+  }, {
+    "id": 53565,
+    "onSuccess": ["streamBulkResults"],
+    "onFailure": [],
+    "name": "generateMetadata",
+    "type": "script",
+    "properties": {
+      "body": "\nlet downloadHeaders = {\n  \"Accept\":\"text/csv\"\n};\n\ndone({\n  \"downloadHeaders\": downloadHeaders\n});\n "
+    }
+  }],
+  "triggers": [{
+    "id": 4698,
+    "onSuccess": ["isSuccess"],
+    "onFailure": [],
+    "type": "manual",
+    "async": true,
+    "name": "trigger",
+    "properties": {}
+  }],
+  "active": true,
+  "singleThreaded": false,
+  "debugLoggingEnabled": true,
+  "configuration": [{
+    "id": 15745,
+    "key": "crm.source",
+    "name": "CRM Source",
+    "type": "elementInstance",
+    "description": "The CRM source instance",
+    "required": true
+  }, {
+    "id": 15748,
+    "key": "object",
+    "name": "object",
+    "type": "value",
+    "description": "Object to transfer (contacts, accounts, CustomContact, etc.)",
+    "required": true
+  }, {
+    "id": 15744,
+    "key": "target",
+    "name": "target",
+    "type": "elementInstance",
+    "description": "Act-On Target Instance",
+    "required": true
+  }]
+}
