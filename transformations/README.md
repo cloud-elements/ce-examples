@@ -1,10 +1,8 @@
-# ce-examples
-A collection of simple examples on how to use Cloud Elements.
+# Transformation examples
+A collection of simple examples on how to use Cloud Elements Transformations.
 
-The examples are organized by type:
-* [Formulas](formulas)
-* [Elements](elements)
-* [Transformations](transformations)
+The following examples are provided:
+* [Sync picklist values from one vendor to another](picklist)
 
 For more information on how to use Cloud Elements, see our [developer portal](https://developers.cloud-elements.com) 
 or our [support page](https://support.cloud-elements.com/hc/en-us).

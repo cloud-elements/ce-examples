@@ -1,0 +1,61 @@
+{
+  "myContacts": {
+    "level": "instance",
+    "objectName": "myContacts",
+    "vendorName": "Lead",
+    "startDate": "2018-03-06 21:32:30.374587",
+    "fields": [
+      {
+        "type": "string",
+        "path": "company",
+        "vendorPath": "Company",
+        "level": "organization"
+      },
+      {
+        "type": "string",
+        "path": "email",
+        "vendorPath": "Email",
+        "level": "organization"
+      },
+      {
+        "type": "string",
+        "path": "firstName",
+        "vendorPath": "FirstName",
+        "level": "organization"
+      },
+      {
+        "type": "string",
+        "path": "lastName",
+        "vendorPath": "LastName",
+        "level": "organization"
+      },
+      {
+        "type": "string",
+        "path": "leadSource",
+        "vendorPath": "LeadSource",
+        "level": "organization"
+      }
+    ],
+    "configuration": [
+      {
+        "type": "addToDocumentation"
+      },
+      {
+        "type": "passThrough",
+        "properties": {
+          "fromVendor": false,
+          "toVendor": false
+        }
+      },
+      {
+        "type": "inherit"
+      }
+    ],
+    "script": {
+      "body": "if (fromVendor) {  \n    // Demonstrates getting from Sales Force (keys) and transforming to common object (values)\n    let getPick = {\n        'Web': 'Online',\n        'Phone Inquiry': 'Phone',\n        'Partner Referral': 'Referral',\n        'Purchased List': 'List',\n        'Other': 'Unknown'\n    };\n\n    transformedObject.leadSource = getPick[originalObject.LeadSource];\n\n} else {  \n    // Define one to many mapping\n    // Demonstrates posting to common object (keys) and transfoming to Sales Force (values)\n    let postPick = {\n        'Online': 'Web',\n        'Phone': 'Phone Inquiry',\n        'Referral': 'Partner Referral',\n        'List': 'Purchased List',\n        'Event': 'Purchased List',\n        'Unknown': 'Other'\n    };\n\n    transformedObject.leadSource = postPick[originalObject.leadSource];\n}\ndone(transformedObject);\n\n",
+      "mimeType": "application/javascript",
+      "filterEmptyResponse": false
+    },
+    "isLegacy": false
+  }
+}
