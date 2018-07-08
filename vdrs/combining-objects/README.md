@@ -4,7 +4,7 @@ This is an example for users familiar with Cloud Elements Virtual Data Resources
 Things to note in this example:
 1. httpRequestBody.js
   * can be added to your custom Javascript to invoke another VDR (you must have a VDR with the name you are putting in the path but I will get to that)
-![JavascriptField](JavascriptField.png)
+![JavascriptField](javascriptField.png)
   * Has fields that may be edited to meet your needs including host (that identifies which Cloud Elements platform you are using prod or api, staging, snapshot, etc), path which can be changed depending on the VDR you are calling and the query you might be using when calling it so in this case we are calling a custom VDR called myOrders and getting the order by the customerId, and method.
       host: "api.cloud-elements.com",
       path: `/elements/api-v2/myOrders?where=CustomerID=${customerId}`,
