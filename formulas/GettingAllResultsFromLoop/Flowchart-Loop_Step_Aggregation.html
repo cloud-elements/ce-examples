@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Loop_Step_Aggregation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+        var callback = function(){}
+    </script>
+    <style>
+        div.mermaidTooltip {
+                    margin-left: 50px;
+                    text-align: left;
+                    max-width: none;
+                }
+        .node rect,
+        .node circle,
+        .node ellipse,
+        .node polygon {
+                    fill: #ffffff;
+                    stroke: rgb(200,200,200);
+                    stroke-width: 2px;
+                }
+        .mermaid .label {
+                  max-width: 50px;
+                }
+        table, th, td {
+                    border: 1px solid black;
+                }
+        table {
+                    border-spacing: 5px;
+                    border-radius: 5px;
+                    margin: auto;
+                }
+        th, td {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    border-radius: 5px;
+                }
+        th {
+                    color: blue;
+                }
+        td {
+                    width: 180px;
+                    text-align: center;
+                    background-color: rgb(237, 241, 242);
+                }
+        h2 {
+                    text-align: center;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 1em;
+                }
+        .container {
+                    text-align: center;
+                    background-color: rgb(237, 241, 242);
+                    font-size: 11px;
+                    font-weight: 900;
+                }
+        body {
+                    font-family: 'Open Sans';
+                }
+        .edgeLabel {
+                    font-size: 9px;
+                }
+    </style>
+</head>
+<body>
+    <h2>
+        Loop_Step_Aggregation
+    </h2>
+    <div class="container">
+        <div class="mermaid">
+            graph TD
+            step-000((Trigger))
+            step-001>getContacts]
+            step-002(-contactsLoop-)
+            step-003(aggregator)
+            step-004(final)
+            step-005((END))
+            step-000== continue ==>step-001
+            step-001-- success -->step-002
+            step-002-- success -->step-003
+            step-002-- failure -->step-004
+            step-003-- success -->step-002
+            step-004-. done .->step-005
+            style step-001 stroke:#0f6ab4;
+            style step-005 stroke-width:3px,stroke-dasharray: 5, 5;
+            click step-000 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPnRyaWdnZXI8L3RpdGxlPjwvaGVhZD48Ym9keT5UcmlnZ2VyIEVsZW1lbnQ6PGJyPjxicj48cHJlPiAgYXN5bmMgOiBUcnVlPGJyPiAgIHR5cGUgOiBtYW51YWw8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICd0cmlnZ2VyJywgPGJyPiAgJ29uRmFpbHVyZSc6IFtdLCA8YnI+ICAnb25TdWNjZXNzJzogWzxicj4gICAgJ2dldENvbnRhY3RzJzxicj4gIF0sIDxicj4gICdwcm9wZXJ0aWVzJzoge30sIDxicj4gICdhc3luYyc6IHRydWUsIDxicj4gICd0eXBlJzogJ21hbnVhbCcsIDxicj4gICdpZCc6IDU1MjE8YnI+fTwvcHJlPjwvYm9keT48L2h0bWw+" "Trigger Element:<br><pre>  async : True<br>   type : manual</pre>"
+            click step-001 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmdldENvbnRhY3RzPC90aXRsZT48L2hlYWQ+PGJvZHk+UmVxdWVzdDo8YnI+PGJyPjxwcmU+ICAgICAgICAgICAgICAgIGFwaSA6IC9jb250YWN0czxicj4gIGVsZW1lbnRJbnN0YW5jZUlkIDogJHtjb25maWcuSW5zdGFuY2V9PGJyPiAgICAgICAgICAgICBtZXRob2QgOiBHRVQ8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICdnZXRDb250YWN0cycsIDxicj4gICdvbkZhaWx1cmUnOiBbXSwgPGJyPiAgJ29uU3VjY2Vzcyc6IFs8YnI+ICAgICdjb250YWN0c0xvb3AnPGJyPiAgXSwgPGJyPiAgJ2lkJzogNTk2ODgsIDxicj4gICd0eXBlJzogJ2VsZW1lbnRSZXF1ZXN0JywgPGJyPiAgJ3Byb3BlcnRpZXMnOiB7PGJyPiAgICAnZWxlbWVudEluc3RhbmNlSWQnOiAnJHtjb25maWcuSW5zdGFuY2V9JywgPGJyPiAgICAnYXBpJzogJy9jb250YWN0cycsIDxicj4gICAgJ21ldGhvZCc6ICdHRVQnPGJyPiAgfTxicj59PC9wcmU+PC9ib2R5PjwvaHRtbD4=" "Request:<br><pre>                api : /contacts<br>  elementInstanceId : ${config.Instance}<br>             method : GET</pre>"
+            click step-002 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmNvbnRhY3RzTG9vcDwvdGl0bGU+PC9oZWFkPjxib2R5Pkxvb3A6PGJyPjxicj48cHJlPiAgbGlzdCA6IHN0ZXBzLmdldENvbnRhY3RzLnJlc3BvbnNlLmJvZHk8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICdjb250YWN0c0xvb3AnLCA8YnI+ICAnb25GYWlsdXJlJzogWzxicj4gICAgJ2ZpbmFsJzxicj4gIF0sIDxicj4gICdvblN1Y2Nlc3MnOiBbPGJyPiAgICAnYWdncmVnYXRvcic8YnI+ICBdLCA8YnI+ICAnaWQnOiA1OTY4OSwgPGJyPiAgJ3R5cGUnOiAnbG9vcCcsIDxicj4gICdwcm9wZXJ0aWVzJzogezxicj4gICAgJ2xpc3QnOiAnc3RlcHMuZ2V0Q29udGFjdHMucmVzcG9uc2UuYm9keSc8YnI+ICB9PGJyPn08L3ByZT48L2JvZHk+PC9odG1sPg==" "Loop:<br><pre>  list : steps.getContacts.response.body</pre>"
+            click step-003 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmFnZ3JlZ2F0b3I8L3RpdGxlPjwvaGVhZD48Ym9keT5KYXZhU2NyaXB0Ojxicj48YnI+PHByZT5sZXQgYXJyID0gc3RlcHMuYWdncmVnYXRvciA/IHN0ZXBzLmFnZ3JlZ2F0b3IuYXJyIDogW107PGJyPmFyci5wdXNoKHN0ZXBzLmNvbnRhY3RzTG9vcC5lbnRyeS5OYW1lKTs8YnI+PGJyPmRvbmUoe2FycjphcnJ9KTs8L3ByZT48YnI+UkFXIEpTT046PGJyPjxicj48cHJlPns8YnI+ICAnbmFtZSc6ICdhZ2dyZWdhdG9yJywgPGJyPiAgJ29uRmFpbHVyZSc6IFtdLCA8YnI+ICAnb25TdWNjZXNzJzogWzxicj4gICAgJ2NvbnRhY3RzTG9vcCc8YnI+ICBdLCA8YnI+ICAnaWQnOiA1OTY5MCwgPGJyPiAgJ3R5cGUnOiAnc2NyaXB0JywgPGJyPiAgJ3Byb3BlcnRpZXMnOiB7PGJyPiAgICAnYm9keSc6ICdsZXQgYXJyID0gc3RlcHMuYWdncmVnYXRvciA/IHN0ZXBzLmFnZ3JlZ2F0b3IuYXJyIDogW107XG5hcnIucHVzaChzdGVwcy5jb250YWN0c0xvb3AuZW50cnkuTmFtZSk7XG5cbmRvbmUoe2FycjphcnJ9KTsnPGJyPiAgfTxicj59PC9wcmU+PC9ib2R5PjwvaHRtbD4=" "JavaScript:<br><pre>let arr = steps.aggregator ? steps.aggregator.arr : [];<br>arr.push(steps.contactsLoop.entry.Name);<br><br>done({arr:arr});</pre>"
+            click step-004 "data:text/html;charset=utf-8;base64,PGh0bWw+PGhlYWQ+PHRpdGxlPmZpbmFsPC90aXRsZT48L2hlYWQ+PGJvZHk+SmF2YVNjcmlwdDo8YnI+PGJyPjxwcmU+Y29uc3QgYXJyPSBzdGVwcy5hZ2dyZWdhdG9yLmFycjs8YnI+ZG9uZSh7YXJyOmFycn0pOzwvcHJlPjxicj5SQVcgSlNPTjo8YnI+PGJyPjxwcmU+ezxicj4gICduYW1lJzogJ2ZpbmFsJywgPGJyPiAgJ29uRmFpbHVyZSc6IFtdLCA8YnI+ICAnb25TdWNjZXNzJzogW10sIDxicj4gICdpZCc6IDU5NjkxLCA8YnI+ICAndHlwZSc6ICdzY3JpcHQnLCA8YnI+ICAncHJvcGVydGllcyc6IHs8YnI+ICAgICdib2R5JzogJ2NvbnN0IGFycj0gc3RlcHMuYWdncmVnYXRvci5hcnI7XG5kb25lKHthcnI6YXJyfSk7Jzxicj4gIH08YnI+fTwvcHJlPjwvYm9keT48L2h0bWw+" "JavaScript:<br><pre>const arr= steps.aggregator.arr;<br>done({arr:arr});</pre>"
+
+        </div>
+    </div>
+    <h2>
+        Formula Configuration
+    </h2>
+    <div class="container">
+        <h3>Basic</h3><table><tr><th>key</th><th>value</th></tr><tr><td>Name</td><td>Loop_Step_Aggregation</td></tr><tr><td>Single Threaded?</td><td>False</td></tr><tr><td>Active?</td><td>True</td></tr><tr><td>Number of Steps</td><td>5</td></tr><tr><td>Number of Triggers</td><td>1</td></tr></table><br/><h3>Elements</h3><table><tr><th>key</th><th>name</th><th>required</th></tr><tr><td>Instance</td><td>Instance</td><td>True</td></tr></table><br/><h3>Values</h3><table><tr><th>key</th><th>name</th><th>required</th></tr></table><br/>
+    </div>
+    <div class="key">
+        <h2>
+            Key
+        </h2>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Symbol</th>
+            </tr>
+
+            <tr>
+                <td>Filter Steps</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        A{Step Name}
+                    </div>
+                </td>
+                <td>Trigger/End</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        B((Actual))
+                        C((Generated))
+                        style C stroke-width:2px,stroke-dasharray: 5, 5;
+                    </div>
+                </td>
+                <td>Request Step</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        A>GET]
+                        style A stroke:#0f6ab4;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        B>POST]
+                        style B stroke:#10a54a;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        C>PATCH]
+                        style C stroke:#D38042;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        C>PUT]
+                        style C stroke:#C5862B;
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                        D>DELETE]
+                        style D stroke:#a41e22;
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Script</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D(Step Name)
+                    </div>
+                </td>
+                <td>Loop</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D(-Step Name-)
+                    </div>
+                </td>
+                <td>Other(TYPE)</td>
+                <td>
+                    <div class="mermaid">
+                        graph TD
+                        D[Step Name]
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Pass/Fail Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL(B)
+                        AL-->BL
+                    </div>
+                </td>
+                <td>Generated Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL((B))
+                        AL-.->BL
+                        style BL stroke-width:2px,stroke-dasharray: 5, 5;
+                    </div>
+                </td>
+                <td>Continue Connection</td>
+                <td>
+                    <div class="mermaid">
+                        graph LR
+                        AL(A)
+                        BL(B)
+                        AL==>BL
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br><br>
+    </div>
+</body>
+</html>
