@@ -1,0 +1,74 @@
+{
+  "id": 6134,
+  "name": "Loop_Step_Aggregation",
+  "userId": 155575,
+  "accountId": 155224,
+  "createdDate": "2018-07-11T15:46:41Z",
+  "steps": [{
+    "id": 59688,
+    "onSuccess": ["contactsLoop"],
+    "onFailure": [],
+    "name": "getContacts",
+    "type": "elementRequest",
+    "properties": {
+      "api": "/contacts",
+      "elementInstanceId": "${config.Instance}",
+      "method": "GET"
+    }
+  }, {
+    "id": 59690,
+    "onSuccess": ["contactsLoop"],
+    "onFailure": [],
+    "name": "aggregator",
+    "type": "script",
+    "properties": {
+      "body": "let arr = steps.aggregator ? steps.aggregator.arr : [];\narr.push(steps.contactsLoop.entry.Name);\n\ndone({arr:arr});"
+    }
+  }, {
+    "id": 59689,
+    "onSuccess": ["aggregator"],
+    "onFailure": ["final"],
+    "name": "contactsLoop",
+    "type": "loop",
+    "properties": {
+      "list": "steps.getContacts.response.body"
+    }
+  }, {
+    "id": 59692,
+    "onSuccess": ["aggregator"],
+    "onFailure": [],
+    "name": "test",
+    "type": "script",
+    "properties": {
+      "body": "let test = steps.test ? steps.test.arr1 : [];\nlet count=steps.test.length;\nstep.test.length.push(count);\nif(step.test.length>=10){\n  break;\n}\n\ndone({arr1:arr1}"
+    }
+  }, {
+    "id": 59691,
+    "onSuccess": [],
+    "onFailure": [],
+    "name": "final",
+    "type": "script",
+    "properties": {
+      "body": "const arr= steps.aggregator.arr;\ndone({arr:arr});"
+    }
+  }],
+  "triggers": [{
+    "id": 5521,
+    "onSuccess": ["getContacts"],
+    "onFailure": [],
+    "type": "manual",
+    "async": true,
+    "name": "trigger",
+    "properties": {}
+  }],
+  "active": true,
+  "debugLoggingEnabled": true,
+  "singleThreaded": false,
+  "configuration": [{
+    "id": 17361,
+    "key": "Instance",
+    "name": "Instance",
+    "type": "elementInstance",
+    "required": true
+  }]
+}
